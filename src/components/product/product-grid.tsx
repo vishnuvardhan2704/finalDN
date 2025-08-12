@@ -23,6 +23,8 @@ export default function ProductGrid() {
     const fetchProducts = async () => {
       setIsLoading(true);
       try {
+        // Try to fetch from Firebase first
+        console.log('[ProductGrid] Attempting to fetch from Firebase...');
         const querySnapshot = await getDocs(collection(db, 'products'));
         const productsData = querySnapshot.docs.map(doc => {
           return {
@@ -30,9 +32,17 @@ export default function ProductGrid() {
             ...doc.data(),
           } as Product
         });
-        setProducts(productsData);
+        
+        if (productsData.length > 0) {
+          console.log('[ProductGrid] Successfully fetched', productsData.length, 'products from Firebase');
+          setProducts(productsData);
+        } else {
+          console.warn('[ProductGrid] Firebase returned no products');
+          setProducts([]);
+        }
       } catch (error) {
-        console.error("Error fetching products from Firestore:", error);
+        console.warn('Firebase fetch failed:', error);
+        setProducts([]);
       } finally {
         setIsLoading(false);
       }
@@ -71,6 +81,12 @@ export default function ProductGrid() {
         return [...filtered].sort((a, b) => a.name.localeCompare(b.name));
     }
   }, [products, searchQuery, categoryFilter, sortOrder]);
+
+  // Get unique categories from products for the filter dropdown
+  const categories = useMemo(() => {
+    const uniqueCategories = [...new Set(products.map(p => p.category))];
+    return uniqueCategories.sort();
+  }, [products]);
   
   if (isLoading) {
     return (
@@ -106,10 +122,9 @@ export default function ProductGrid() {
                     </SelectTrigger>
                     <SelectContent>
                         <SelectItem value="all">All Categories</SelectItem>
-                        <SelectItem value="Groceries">Groceries</SelectItem>
-                        <SelectItem value="Clothing">Clothing</SelectItem>
-                        <SelectItem value="Electronics">Electronics</SelectItem>
-                        <SelectItem value="Home Goods">Home Goods</SelectItem>
+                        {categories.map(category => (
+                          <SelectItem key={category} value={category}>{category}</SelectItem>
+                        ))}
                     </SelectContent>
                 </Select>
             </div>

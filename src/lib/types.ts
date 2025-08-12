@@ -6,7 +6,7 @@ export interface Product {
   image: string;
   carbonIntensity: number; // in kg CO2e per kg of product
   isOrganic: boolean;
-  category: 'Clothing' | 'Electronics' | 'Groceries' | 'Home Goods';
+  category: 'Meat' | 'Dairy' | 'Produce' | 'Grains' | 'Clothing' | 'Electronics' | 'Home Goods' | 'Automotive' | 'Energy' | 'Transportation';
   price: number;
   isSustainableSwap?: boolean; // Optional flag for cart items
   ecoCreds?: number;

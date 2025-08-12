@@ -1,4 +1,3 @@
-
 {
   "name": "ecoswap",
   "version": "0.1.0",
@@ -11,10 +10,12 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "db:seed": "tsx src/scripts/seed.ts",
-    "deploy": "firebase deploy"
+    "deploy": "firebase deploy",
+    "setup": "node setup-env.js"
   },
   "dependencies": {
     "@genkit-ai/googleai": "^1.0.0",
+    "@google/generative-ai": "^0.24.1",
     "@hookform/resolvers": "^3.9.0",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-alert-dialog": "^1.1.1",

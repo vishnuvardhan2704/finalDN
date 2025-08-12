@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig: FirebaseOptions = {
-    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
+    apiKey: "AIzaSyClUfp4s3j-p8kwwPrS604OKlXL2pguxO8",
+    authDomain: "ecoswap-k77jk.firebaseapp.com",
+    projectId: "ecoswap-k77jk",
+    storageBucket: "ecoswap-k77jk.appspot.com",
+    messagingSenderId: "172688661979",
+    appId: "1:172688661979:web:2e835b27fa0e41c6519bfe"
 };
 
 // Initialize Firebase for client side
